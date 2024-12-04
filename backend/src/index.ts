@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/api/user', userRoute);
+app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 
 app.listen(7000, () => {

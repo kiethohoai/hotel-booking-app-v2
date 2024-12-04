@@ -7,3 +7,4 @@
 07 User Registration API
 08 User Login API
 09 User Registration Form
+10 User Registration (FE & BE with React Query)

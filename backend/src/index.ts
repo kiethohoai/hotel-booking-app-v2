@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
 import userRoute from './routes/user';
+import authRoute from './routes/auth';
 
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING as string)
@@ -21,6 +22,7 @@ app.use(cors());
 
 // Routes
 app.use('/api/user', userRoute);
+app.use('/api/auth', authRoute);
 
 app.listen(7000, () => {
   console.log(`🚀Server running on localhost:7000`);

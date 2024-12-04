@@ -3,3 +3,4 @@
 03 DB Setup
 04 Tailwind Setup
 05 Adding Layout
+06 User Model

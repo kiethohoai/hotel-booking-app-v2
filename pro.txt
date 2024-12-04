@@ -2,3 +2,4 @@
 02 FE Setup
 03 DB Setup
 04 Tailwind Setup
+05 Adding Layout

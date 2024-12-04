@@ -4,3 +4,4 @@
 04 Tailwind Setup
 05 Adding Layout
 06 User Model
+07 User Registration API

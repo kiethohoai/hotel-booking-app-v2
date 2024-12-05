@@ -7,8 +7,9 @@ import { vertifyToken } from '../middlewares/auth';
 
 const router = express.Router();
 
+/* SIGN IN ROUTE */
 router.post(
-  '/login',
+  '/sign-in',
   [
     check('email', 'Email is required').isEmail(),
     check('password', 'Password require 6 or more characters').isLength({ min: 6 }),

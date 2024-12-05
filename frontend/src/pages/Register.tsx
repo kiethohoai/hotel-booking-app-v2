@@ -29,8 +29,8 @@ const Register = () => {
       showToast({ message: `Registration Successfully`, type: 'SUCCESS' });
       navigate('/');
     },
-    onError: () => {
-      showToast({ message: `Registration Failed`, type: 'ERROR' });
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: 'ERROR' });
     },
   });
 
@@ -122,7 +122,7 @@ const Register = () => {
       <div className="flex items-center justify-between">
         <span>
           Already registered ?{' '}
-          <Link to="/login" className="italic underline">
+          <Link to="/sign-in" className="italic underline">
             Login in here!
           </Link>
         </span>

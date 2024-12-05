@@ -12,3 +12,4 @@
 12 CORS Setup & Checking User Login (API)
 13 Sign In (FE & BE) 
 14 Sign Out (FE & BE) 
+15 Setup Script for Deployment

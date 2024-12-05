@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import userRoute from './routes/user';
 import authRoute from './routes/auth';
+import path from 'path';
 
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING as string)
@@ -26,6 +27,9 @@ app.use(
     credentials: true,
   }),
 );
+
+/* Allow BE access to FE static */
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 // Routes
 app.use('/api/users', userRoute);

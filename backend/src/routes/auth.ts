@@ -61,6 +61,14 @@ router.post(
   },
 );
 
+/* SIGN OUT */
+router.post('/sign-out', async (req: Request, res: Response) => {
+  res.cookie('auth_token', '', {
+    expires: new Date(0),
+  });
+  res.status(201).send({ message: 'Logged Out Successfully' });
+});
+
 /* Check User Login By A Middleware */
 router.get('/validate-token', vertifyToken, async (req: Request, res: Response) => {
   res.status(200).send({ userId: req.userId });

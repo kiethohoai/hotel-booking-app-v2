@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import * as apiClient from '../api-client';
 import { useAppContext } from '../contexts/AppContext/useAppContext';
@@ -15,6 +15,7 @@ export type RegisterFormData = {
 
 /* Register */
 const Register = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useAppContext();
   const {
@@ -25,8 +26,9 @@ const Register = () => {
   } = useForm<RegisterFormData>();
 
   const mutation = useMutation(apiClient.register, {
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: `Registration Successfully`, type: 'SUCCESS' });
+      await queryClient.invalidateQueries('validateToken');
       navigate('/');
     },
     onError: (error: Error) => {
@@ -49,6 +51,7 @@ const Register = () => {
           Fist Name
           <input
             type="text"
+            value={'John'}
             className="w-full rounded border px-2 py-1 font-normal"
             {...register('firstName', { required: 'This field is required' })}
           />
@@ -60,6 +63,7 @@ const Register = () => {
           Last Name
           <input
             type="text"
+            value={'Ho'}
             className="w-full rounded border px-2 py-1 font-normal"
             {...register('lastName', { required: 'This field is required' })}
           />
@@ -74,6 +78,7 @@ const Register = () => {
         Email
         <input
           type="email"
+          value={'johnho@gmail.com'}
           className="w-full rounded border px-2 py-1 font-normal"
           {...register('email', { required: 'This field is required' })}
         />
@@ -87,6 +92,7 @@ const Register = () => {
         Password
         <input
           type="password"
+          value={123456}
           className="w-full rounded border px-2 py-1 font-normal"
           {...register('password', {
             required: 'This field is required',
@@ -106,6 +112,7 @@ const Register = () => {
         Confirm Password
         <input
           type="password"
+          value={123456}
           className="w-full rounded border px-2 py-1 font-normal"
           {...register('confirmPassword', {
             validate: (value) => {

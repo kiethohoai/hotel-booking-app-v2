@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
-import userRoute from './routes/user';
-import authRoute from './routes/auth';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
+import userRoute from './routes/user';
+import authRoute from './routes/auth';
+import hotelRoute from './routes/my-hotels';
 
 // Config cloudinary
 cloudinary.config({
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/my-hotels', hotelRoute);
 
 app.listen(7000, () => {
   console.log(`🚀Server running on localhost:7000`);

@@ -14,3 +14,4 @@
 14 Sign Out (FE & BE) 
 15 Setup Script for Deployment
 16 Cloudinary Config
+17 Create/Add Hotel API

@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import User from '../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { vertifyToken } from '../middlewares/auth';
 
 const router = express.Router();
 
@@ -58,5 +59,10 @@ router.post(
     }
   },
 );
+
+/* Check User Login By A Middleware */
+router.get('/validate-token', vertifyToken, async (req: Request, res: Response) => {
+  res.status(200).send({ userId: req.userId });
+});
 
 export default router;

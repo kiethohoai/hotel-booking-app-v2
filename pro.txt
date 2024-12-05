@@ -9,3 +9,4 @@
 09 User Registration Form
 10 User Registration (FE & BE with React Query)
 11 App Context & Toast Notifications
+12 CORS Setup & Checking User Login (API)

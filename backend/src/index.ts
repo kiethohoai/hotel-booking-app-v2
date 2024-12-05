@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import userRoute from './routes/user';
 import authRoute from './routes/auth';
@@ -16,9 +17,15 @@ mongoose
   });
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FONTEND_URL,
+    credentials: true,
+  }),
+);
 
 // Routes
 app.use('/api/users', userRoute);

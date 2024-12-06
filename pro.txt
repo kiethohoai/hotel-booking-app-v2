@@ -18,3 +18,4 @@
 18 Create Hotel Form (FE & Connect to BE)
 19 Catch all routes
 20 View My Hotels (Overview)
+21 Config Share Type (BE to FE)

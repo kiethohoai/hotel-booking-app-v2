@@ -45,6 +45,11 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/my-hotels', hotelRoute);
 
+// Catch all routes
+app.get('*', async (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../../frontend/index.html'));
+});
+
 app.listen(7000, () => {
   console.log(`🚀Server running on localhost:7000`);
 });

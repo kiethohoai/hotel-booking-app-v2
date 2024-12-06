@@ -64,5 +64,17 @@ export const validateToken = async () => {
   return await res.json();
 };
 
+/* ADD MY HOTEL (CREATE HOTEL) */
+export const addMyHotel = async (hotelFormData: FormData) => {
+  const res = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+    method: 'POST',
+    credentials: 'include',
+    body: hotelFormData,
+  });
+
+  if (!res.ok) throw new Error('Failed to add new Hotel');
+  return await res.json();
+};
+
 /* EXPORT */
 export { register };

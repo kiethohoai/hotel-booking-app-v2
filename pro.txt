@@ -15,3 +15,4 @@
 15 Setup Script for Deployment
 16 Cloudinary Config
 17 Create/Add Hotel API
+18 Create Hotel Form (FE & Connect to BE)

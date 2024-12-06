@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import { useAppContext } from './contexts/AppContext/useAppContext';
 import AddHotel from './pages/AddHotel';
+import MyHotels from './pages/MyHotels';
 
 export default function App() {
   const { isLoggedIn } = useAppContext();
@@ -62,16 +63,35 @@ export default function App() {
                 </Layout>
               }
             ></Route>
+
+            {/* Edit Hotels */}
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <p>Edit Hotel</p>
+                </Layout>
+              }
+            ></Route>
+
+            {/* View Hotels */}
+            <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotels />
+                </Layout>
+              }
+            ></Route>
           </>
         )}
 
         {/* TESTING ONLY */}
-        {/* Add Hotel */}
         <Route
-          path="/add-hotel"
+          path="/my-hotels"
           element={
             <Layout>
-              <AddHotel />
+              <MyHotels />
             </Layout>
           }
         ></Route>

@@ -24,3 +24,4 @@
 24 Search API
 25 Search Context
 26 Search Bar
+27 Search Page Fetch Hotels

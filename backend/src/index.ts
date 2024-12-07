@@ -8,6 +8,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import userRoute from './routes/user';
 import authRoute from './routes/auth';
 import hotelRoute from './routes/my-hotels';
+import hotelSearchRoute from './routes/hotels';
 
 // Config cloudinary
 cloudinary.config({
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/my-hotels', hotelRoute);
+app.use('/api/hotels', hotelSearchRoute);
 
 // Catch all routes
 app.get('*', async (req: Request, res: Response) => {

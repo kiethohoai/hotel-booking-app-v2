@@ -140,7 +140,9 @@ export const searchHotels = async (
   // Call API
   const res = await fetch(`${API_BASE_URL}/api/hotels/search?${queryParams}`);
   if (!res.ok) throw new Error('Error fetching hotels');
-  return await res.json();
+
+  const data = await res.json();
+  return data.respone;
 };
 
 /* EXPORT */

@@ -1,4 +1,8 @@
 {
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-classnames"
+  ],
   "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
@@ -17,8 +21,5 @@
   "tabWidth": 2,
   "useTabs": false,
   "embeddedLanguageFormatting": "auto",
-  "printWidth": 90,
-  "plugins": [
-    "prettier-plugin-tailwindcss"
-  ]
+  "printWidth": 80
 }

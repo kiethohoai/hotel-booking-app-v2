@@ -26,3 +26,4 @@
 26 Search Bar
 27 Search Page Fetch Hotels
 28 Search Result Card UI
+29 Search Pagination

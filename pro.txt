@@ -29,3 +29,4 @@
 29 Search Pagination
 30 Sorting & Filtering Feature
 31 Fix Default Search Page by lastUpdated
+32 Hotel Detail Page (BE & FE)

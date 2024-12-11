@@ -1,12 +1,13 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { useAppContext } from './contexts/AppContext/useAppContext';
 import Layout from './layout/Layout';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
-import { useAppContext } from './contexts/AppContext/useAppContext';
 import AddHotel from './pages/AddHotel';
 import MyHotels from './pages/MyHotels';
 import EditHotel from './pages/EditHotel';
 import Search from './pages/Search';
+import Detail from './pages/Detail';
 
 export default function App() {
   const { isLoggedIn } = useAppContext();
@@ -30,6 +31,16 @@ export default function App() {
           element={
             <Layout>
               <Search />
+            </Layout>
+          }
+        ></Route>
+
+        {/* Detail Page */}
+        <Route
+          path="/detail/:hotelId"
+          element={
+            <Layout>
+              <Detail />
             </Layout>
           }
         ></Route>

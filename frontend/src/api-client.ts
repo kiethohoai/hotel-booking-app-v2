@@ -1,4 +1,7 @@
-import { HotelSearchRespone, HotelType } from './../../backend/src/shared/types';
+import {
+  HotelSearchRespone,
+  HotelType,
+} from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
@@ -122,6 +125,12 @@ export type SearchParams = {
   adultCount?: string;
   childCount?: string;
   page?: string;
+
+  facilities?: string[];
+  types?: string[];
+  stars?: string[];
+  maxPrice?: string;
+  sortOption?: string;
 };
 
 /* searchHotels */
@@ -136,6 +145,15 @@ export const searchHotels = async (
   queryParams.append('adultCount', searchParams.adultCount || '');
   queryParams.append('childCount', searchParams.childCount || '');
   queryParams.append('page', searchParams.page || '');
+
+  queryParams.append('maxPrice', searchParams.maxPrice || '');
+  queryParams.append('sortOption', searchParams.sortOption || '');
+
+  searchParams.types?.forEach((type) => queryParams.append('types', type));
+  searchParams.stars?.forEach((star) => queryParams.append('stars', star));
+  searchParams.facilities?.forEach((facility) =>
+    queryParams.append('facilities', facility),
+  );
 
   // Call API
   const res = await fetch(`${API_BASE_URL}/api/hotels/search?${queryParams}`);

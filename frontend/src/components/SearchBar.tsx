@@ -35,7 +35,8 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="-mt-8 grid grid-cols-2 items-center gap-4 rounded bg-orange-400 p-3 shadow-md lg:grid-cols-3 2xl:grid-cols-5"
+      className="-mt-8 grid grid-cols-2 items-center gap-4 rounded bg-orange-400 p-3 shadow-md
+        lg:grid-cols-3 2xl:grid-cols-5"
     >
       <div className="flex flex-1 flex-row items-center rounded-sm bg-white p-2">
         <MdTravelExplore size={25} className="mr-2" />
@@ -105,10 +106,16 @@ const SearchBar = () => {
       </div>
 
       <div className="flex gap-1">
-        <button className="h-full w-2/3 rounded-sm bg-blue-600 p-2 text-xl font-bold text-white hover:bg-blue-700">
+        <button
+          className="h-full w-2/3 rounded-sm bg-blue-600 p-2 text-xl font-bold text-white
+            hover:bg-blue-700"
+        >
           Search
         </button>
-        <button className="h-full w-1/3 rounded-sm bg-red-600 p-2 text-xl font-bold text-white hover:bg-red-700">
+        <button
+          className="h-full w-1/3 rounded-sm bg-red-600 p-2 text-xl font-bold text-white
+            hover:bg-red-700"
+        >
           Clear
         </button>
       </div>

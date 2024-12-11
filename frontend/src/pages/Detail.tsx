@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import * as apiClient from '../api-client';
 import { AiFillStar } from 'react-icons/ai';
-import GuestInfo from '../components/GuestInfo';
+import GuestInfoForm from '../forms/GuestInfoForm/GuestInfo';
 
 const Detail = () => {
   const { hotelId } = useParams();
@@ -42,8 +42,13 @@ const Detail = () => {
 
       {/* facilities */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 lg:gap-4">
-        {hotel.facilities.map((facility) => (
-          <div className="border bg-slate-100 rounded-sm p-3">{facility}</div>
+        {hotel.facilities.map((facility, i) => (
+          <div
+            className="border bg-slate-100 rounded-sm p-3"
+            key={`facility-list-${i}}`}
+          >
+            {facility}
+          </div>
         ))}
       </div>
 
@@ -51,7 +56,10 @@ const Detail = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
         <div className="whitespace-break-spaces">{hotel.description}</div>
         <div className="h-fit">
-          <GuestInfo />
+          <GuestInfoForm
+            hotelId={hotel._id}
+            pricePerNight={hotel.pricePerNight}
+          />
         </div>
       </div>
     </div>

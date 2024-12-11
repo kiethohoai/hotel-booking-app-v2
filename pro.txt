@@ -27,4 +27,5 @@
 27 Search Page Fetch Hotels
 28 Search Result Card UI
 29 Search Pagination
-30 Sorting & Filtering Feature 
+30 Sorting & Filtering Feature
+31 Fix Default Search Page by lastUpdated

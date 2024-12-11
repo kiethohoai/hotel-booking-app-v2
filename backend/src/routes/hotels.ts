@@ -19,6 +19,8 @@ router.get('/search', async (req: Request, res: Response) => {
       case 'pricePerNightDesc':
         sortOptions = { pricePerNight: -1 };
         break;
+      default:
+        sortOptions = { lastUpdated: -1 };
     }
 
     // Pagination Config

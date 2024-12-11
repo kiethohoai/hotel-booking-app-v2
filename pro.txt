@@ -31,3 +31,4 @@
 31 Fix Default Search Page by lastUpdated
 32 Hotel Detail Page (BE & FE)
 33 Guest Info Form (Hotel Detail Page)
+34 Save Search Terms To Session Storage

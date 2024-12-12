@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import Hotel from '../models/hotel';
 import Stripe from 'stripe';
-import { HotelSearchRespone, HotelType } from '../shared/types';
+import { BookingType, HotelSearchRespone, HotelType } from '../shared/types';
 import { param, validationResult } from 'express-validator';
 import { vertifyToken } from '../middlewares/auth';
 
@@ -115,6 +115,63 @@ router.post(
     res.status(201).send(respone);
   },
 );
+
+/* CREATE HOTEL BOOKING API */
+router.post('/:hotelId/bookings', vertifyToken, async (req: Request, res: Response) => {
+  try {
+    const paymentIntentId = req.body.paymentIntentid;
+
+    // Guard #1
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId as string);
+    if (!paymentIntent) {
+      res.status(400).json({ message: 'Payment Intent Not Found' });
+      return;
+    }
+
+    // Guard #2
+    if (
+      paymentIntent.metadata.hotelId !== req.params.hotelId ||
+      paymentIntent.metadata.userId !== req.userId
+    ) {
+      res.status(400).json({ message: 'Payment Intent Mismatch' });
+      return;
+    }
+
+    // Guard #3
+    if (paymentIntent.status !== 'succeeded') {
+      res.status(400).json({
+        message: `Payment Intent Not Succeeded. Status: ${paymentIntent.status}`,
+      });
+      return;
+    }
+
+    // Create bookings
+    const newBooking: BookingType = {
+      ...req.body,
+      userId: req.userId,
+    };
+
+    const hotel = await Hotel.findOneAndUpdate(
+      { _id: req.params.hotelId },
+      {
+        $push: { bookings: newBooking },
+      },
+    );
+
+    // Guard
+    if (!hotel) {
+      res.status(404).json({ message: 'Hotel Not Found' });
+      return;
+    }
+
+    // Final
+    await hotel.save();
+    res.status(201).send({ message: 'Create Booking Successfully' });
+  } catch (error) {
+    console.log(`🚀error (/:hotelId/bookings):`, error);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+});
 
 const constructSearchQuery = (queryParams: any) => {
   let constructedQuery: any = {};

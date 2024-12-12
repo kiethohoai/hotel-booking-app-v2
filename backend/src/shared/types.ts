@@ -13,6 +13,20 @@ export type HotelType = {
   facilities: string[];
   imageUrls: string[];
   lastUpdated: Date;
+  bookings: BookingType[];
+};
+
+export type BookingType = {
+  _id: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  checkIn: Date;
+  checkOut: Date;
+  adultCount: number;
+  childCount: number;
+  totalCost: number;
 };
 
 export type HotelSearchRespone = {

@@ -32,41 +32,41 @@ export type BookingFormData = {
 const BookingForm = ({ currentUser, paymentIntent }: Props) => {
   const stripe = useStripe();
   const elements = useElements();
-
   const search = useSearchContext();
   const { hotelId } = useParams();
-
   const { showToast } = useAppContext();
 
-  const { mutate: bookRoom } = useMutation(apiClient.createRoomBooking, {
-    onSuccess: () => {
-      showToast({ message: 'Booking Saved!', type: 'SUCCESS' });
+  const { mutate: bookRoom, isLoading } = useMutation(
+    apiClient.createRoomBooking,
+    {
+      onSuccess: () => {
+        showToast({ type: 'SUCCESS', message: 'Booking Saved!' });
+      },
+      onError: () => {
+        showToast({ type: 'ERROR', message: 'Error Saving Booking!' });
+      },
     },
-    onError: () => {
-      showToast({ message: 'Error saving booking', type: 'ERROR' });
-    },
-  });
+  );
 
-  const { handleSubmit, register } = useForm<BookingFormData>({
+  const { register, handleSubmit } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
       lastName: currentUser.lastName,
       email: currentUser.email,
+
       adultCount: search.adultCount,
       childCount: search.childCount,
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
+
       hotelId: hotelId,
-      totalCost: paymentIntent.totalCost,
       paymentIntentId: paymentIntent.paymentIntentId,
+      totalCost: paymentIntent.totalCost,
     },
   });
 
   const onSubmit = async (formData: BookingFormData) => {
-    if (!stripe || !elements) {
-      return;
-    }
-
+    if (!stripe || !elements) return;
     const result = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement) as StripeCardElement,
@@ -74,6 +74,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
     });
 
     if (result.paymentIntent?.status === 'succeeded') {
+      // Book the room
       bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
     }
   };
@@ -147,10 +148,10 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       <div className="flex justify-end">
         <button
           type="submit"
-          disabled={true}
+          disabled={isLoading}
           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-700 disabled:bg-gray-500"
         >
-          Confirm Booking
+          {isLoading ? 'Saving...' : 'Confirm Booking'}
         </button>
       </div>
     </form>

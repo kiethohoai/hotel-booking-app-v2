@@ -13,7 +13,7 @@ const SearchBar = () => {
   const [checkOut, setCheckOut] = useState<Date>(search.checkOut);
   const [adultCount, setAdultCount] = useState<number>(search.adultCount);
   const [childCount, setChildCount] = useState<number>(search.childCount);
-  const [hotelId, setHotelId] = useState<string>(search.hotelId || '');
+  const [hotelId] = useState<string>(search.hotelId || '');
 
   const minDate = new Date();
   const maxDate = new Date();

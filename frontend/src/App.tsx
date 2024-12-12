@@ -107,6 +107,16 @@ export default function App() {
                 </Layout>
               }
             ></Route>
+
+            {/* Booking Page */}
+            <Route
+              path="/my-bookings"
+              element={
+                <Layout>
+                  <h1>My Bookings Page (Comming Soon)</h1>
+                </Layout>
+              }
+            ></Route>
           </>
         )}
 

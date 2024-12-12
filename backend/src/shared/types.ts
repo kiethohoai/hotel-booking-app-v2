@@ -23,3 +23,12 @@ export type HotelSearchRespone = {
     pages: number;
   };
 };
+
+// UserType
+export type UserType = {
+  _id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+};

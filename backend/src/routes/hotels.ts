@@ -112,7 +112,7 @@ router.post(
       totalCost,
     };
 
-    res.status(201).send(respone);
+    res.send(respone);
   },
 );
 

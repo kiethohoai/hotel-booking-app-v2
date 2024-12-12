@@ -32,3 +32,9 @@ export type UserType = {
   firstName: string;
   lastName: string;
 };
+
+export type PaymentIntentRespone = {
+  paymentIntentId: string;
+  clientSecret: string;
+  totalCost: number;
+};

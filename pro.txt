@@ -37,3 +37,4 @@
 37 Booking API
 38 Booking API Fix
 39 Fix Create Payment Intent API
+40 Add Frontend Stripe Elements

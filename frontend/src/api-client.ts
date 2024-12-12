@@ -1,6 +1,7 @@
 import {
   HotelSearchRespone,
   HotelType,
+  PaymentIntentRespone,
   UserType,
 } from './../../backend/src/shared/types';
 import { RegisterFormData } from './pages/Register';
@@ -184,6 +185,27 @@ export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
   });
 
   if (!res.ok) throw new Error('Error fetching hotel');
+
+  return await res.json();
+};
+
+export const createPaymentIntent = async (
+  hotelId: string,
+  numberOfNights: string,
+): Promise<PaymentIntentRespone> => {
+  const res = await fetch(
+    `${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
+    {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify({ numberOfNights }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+
+  if (!res.ok) throw new Error('Error fetching payment-intent');
 
   return await res.json();
 };

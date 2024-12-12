@@ -6,7 +6,7 @@ import { param, validationResult } from 'express-validator';
 import { vertifyToken } from '../middlewares/auth';
 
 const router = express.Router();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 /* /api/hotels/search */
 router.get('/search', async (req: Request, res: Response) => {
@@ -74,7 +74,7 @@ router.get(
   },
 );
 
-/* CREATE PAYMENT INTENT */
+/* CREATE PAYMENT INTENT API */
 router.post(
   '/:hotelId/bookings/payment-intent',
   vertifyToken,

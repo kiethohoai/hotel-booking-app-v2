@@ -105,6 +105,13 @@ export const fetchMyHotels = async (): Promise<HotelType[]> => {
   return await res.json();
 };
 
+/* FETCH ALL HOTELS SORT BY LASTUPDATED */
+export const fetchHotels = async (): Promise<HotelType[]> => {
+  const res = await fetch(`${API_BASE_URL}/api/hotels`);
+  if (!res.ok) throw new Error('Error fetching hotels');
+  return await res.json();
+};
+
 /* GET (DETAIL) MY HOTEL */
 export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
   const res = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelId}`, {

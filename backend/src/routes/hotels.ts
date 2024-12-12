@@ -53,6 +53,17 @@ router.get('/search', async (req: Request, res: Response) => {
   }
 });
 
+// Get all hotels with last updated
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find().sort('-lastUpdated');
+    res.json(hotels);
+  } catch (error) {
+    console.log(`🚀error (/search):`, error);
+    res.status(500).json({ message: 'error fetching hotels' });
+  }
+});
+
 /* api/hotels/id */
 router.get(
   '/:id',

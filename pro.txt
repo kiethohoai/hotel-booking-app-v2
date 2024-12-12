@@ -39,3 +39,4 @@
 39 Fix Create Payment Intent API
 40 Add Frontend Stripe Elements
 41 Fix Contain Errors
+42 Home Page
